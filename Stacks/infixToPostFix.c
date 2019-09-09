@@ -1,8 +1,42 @@
 #include<stdio.h>
 #include<ctype.h>//for using isalpha()
-//PENDING : BASIC STACK STRUCTURE,ERROR DEBUGING
+//PENDING : ERROR DEBUGING
 int i=0,j=0,top=-1;
 char st[20],postfix[10],infix[10],x,y;
+
+int top=-1,c;
+void push(int val)
+{
+//	printf("Enter a Value\n");
+//	scanf("%d",&val);
+	if(top!=4)
+	{
+		top++;
+		st[top]=val;
+	}
+	else if(top==4)
+	{
+		printf("Stack full\n");
+	}
+}
+int pop()
+{
+	if(top!=-1)
+	{
+		int popval = st[top];
+	//	printf("The deleted element is : %d\n",st[top]);
+		top--;
+		return  popval;
+	}
+	else
+	{
+	//	printf("Stack is empty");
+		return 0;
+	}
+}
+
+
+
 	int pr(char x)
 	{
 		if(x=='+'||x=='-')
@@ -56,6 +90,7 @@ void infixToPostFix()
 			i++;
 			x=infix[i];
 		}
+	}
 		while(top!=-1)
 		{
 			y=pop();
