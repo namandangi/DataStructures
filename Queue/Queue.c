@@ -3,6 +3,7 @@ int q[5],front=-1,rear=-1;
 void enqueue()
 {
 	int d;
+	printf("Enter a number : ");
 	scanf("%d",&d);
 	if(front==-1)
 	{

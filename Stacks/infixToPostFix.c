@@ -1,20 +1,20 @@
+//Completly Works
 #include<stdio.h>
 #include<ctype.h>//for using isalpha()
 //PENDING : ERROR DEBUGING
-int i=0,j=0,top=-1;
-char st[20],postfix[10],infix[10],x,y;
+int i=0,j=0,top=-1,c;
+char st[50],postfix[50],infix[50],x,y;
 
-int top=-1,c;
 void push(int val)
 {
 //	printf("Enter a Value\n");
 //	scanf("%d",&val);
-	if(top!=4)
+	if(top!=50-1)
 	{
 		top++;
 		st[top]=val;
 	}
-	else if(top==4)
+	else if(top==49)
 	{
 		printf("Stack full\n");
 	}
@@ -34,25 +34,23 @@ int pop()
 		return 0;
 	}
 }
-
-
-
 	int pr(char x)
 	{
 		if(x=='+'||x=='-')
 			return 2;
 		else if(x=='/'||x=='*'||x=='%')
 			return 3;
-		else if(x=='(')
+		else 
 			return 1;
 	}
 void infixToPostFix()
 {
 	x=infix[i];
-	while(x!='\0')
+	while(x!=0)
 	{
-		if(isalpha(x))
+		if(isalnum(x))
 		{
+			//printf("%c",x);
 			postfix[j]=x;
 			j++;
 		}
@@ -78,18 +76,18 @@ void infixToPostFix()
 			}
 			else 
 			{
-				y=pop();
-				while(top!=-1&&pr(x)>=pr(st[top]))
+				while(top!=-1&&pr(x)<=pr(st[top]))
 				{
+					y=pop();
 					postfix[j]=y;
 					j++;
 					y=pop();
 				}
 				push(x);
 			}
+		}
 			i++;
 			x=infix[i];
-		}
 	}
 		while(top!=-1)
 		{
@@ -97,12 +95,16 @@ void infixToPostFix()
 			postfix[j]=y;
 			j++;
 		}
-	}
+}
 	void main()
 	{
-		printf("Enter an algebric equation");
+		printf("Enter an algebric equation : ");
 		gets(infix);
+		for(int i=0;i<19;i++)
+		printf("%c",infix[i]);
 		infixToPostFix();
+		printf("\n");
+		//for(int i=0;i<3;i++)
+		//printf("%c",postfix[i]);		
 		puts(postfix);
 	}
-}
